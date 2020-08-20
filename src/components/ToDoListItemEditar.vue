@@ -18,7 +18,7 @@
             @textarea="todoSelecionado = {propriedade: 'descricao', valor: $event.target.value}">
         </div>
         <button @click="salvarTodo" class="btn btn-success float-right">Salvar</button>
-        <button @click="!cancelar()" type="button" class="btn btn-danger">Cancelar</button>
+        <button @click="cancelarEdicao" type="button" class="btn btn-danger">Cancelar</button>
     </div>
     
 </template>
@@ -63,6 +63,9 @@ export default {
     methods:{
         salvarTodo(){
            eventBus.atualizarTodo(this.todoLocal) 
+        },
+        cancelarEdicao(){
+            eventBus.cancelarEdicao()
         }
     }
 }

@@ -17,7 +17,14 @@ export const eventBus = new Vue({
     */ 
     atualizarTodo(todoAtualizado){
       this.$emit('atualizarTodo',todoAtualizado)
+    },
+    excluirTodo(todoExcluido){
+      this.$emit('excluirTodo',todoExcluido)
+    },
+    cancelarEdicao(){
+      this.$emit('cancelarEdicao')
     }
+
   }
 })
 
