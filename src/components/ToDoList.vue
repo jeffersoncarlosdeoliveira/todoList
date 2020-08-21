@@ -4,7 +4,7 @@
         
         <div class="col-8">
             <br>
-            <button v-if="!adicionar" @click="adicionarNovoTodo" class="btn btn-primary float-right">Adicionar nova tarefa</button>
+            <button v-if="!adicionar" @click="adicionarNovoTodo" :todoSelecionado="undefined" class="btn btn-primary float-right">Adicionar nova tarefa</button>
             <button v-else @click="salvarNovoTodo" class="btn btn-primary float-right">Salvar nova tarefa</button>
         </div>
         <div class="col-8">
@@ -58,15 +58,14 @@ export default {
     data(){
         return {
             todos: [
-                {id: 1, titulo: 'Aprender VueJS', descricao: 'Aprender uma nova tecnologia',finalizada: false},
-                {id: 2, titulo: 'Ler Livro Clean Code', descricao: 'Aprofundar conhecimento',finalizada: false}
             ],
             /* Propriedade que valida se a div para Edição da tarefa será mostrada*/
             editar: false,
             todoSelecionado: undefined,
             adicionar: false,
             novoTodo:'',
-            descricaoNovoTodo:''
+            descricaoNovoTodo:'',
+            proximoID:1
         }
     },
     created(){
@@ -97,14 +96,17 @@ export default {
             this.editar =false
         },
         adicionarNovoTodo(){
+            this.todoSelecionado = undefined
+            this.editar =false
             this.adicionar =true
               
         },
         salvarNovoTodo(){
-            this.todos.push({id:this.todos.length+1, titulo: this.novoTodo, descricao: this.descricaoNovoTodo,finalizada:false}) 
+            this.todos.push({id:this.proximoID, titulo: this.novoTodo, descricao: this.descricaoNovoTodo,finalizada:false}) 
             this.adicionar =false
             this.novoTodo = '',
-            this.descricaoNovoTodo =''
+            this.descricaoNovoTodo ='',
+            this.proximoID++
         },
         excluirTodo(todoExcluido){
             const indice = this.todos.findIndex(todo => todo.id === todoExcluido.id)

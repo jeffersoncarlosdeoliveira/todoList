@@ -15,7 +15,7 @@
             <input type="text" class="form-control" 
             placeholder="Insira a descrição" 
             :value="todoSelecionado.descricao"
-            @textarea="todoSelecionado = {propriedade: 'descricao', valor: $event.target.value}">
+            @input="todoSelecionado = {propriedade: 'descricao', valor: $event.target.value}">
         </div>
         <button @click="salvarTodo" class="btn btn-success float-right">Salvar</button>
         <button @click="cancelarEdicao" type="button" class="btn btn-danger">Cancelar</button>
